@@ -3,6 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 import {ToughtOfDayComponent} from './components/tought-of-day/tought-of-day.component';
 import { AppComponent } from './app.component';
 import { PollComponent } from './components/poll/poll.component';
+import { FunFactComponent } from './components/fun-fact/fun-fact.component';
 
 
 
@@ -12,6 +13,9 @@ const routes: Routes = [{
 },{
   path: 'poll' ,
   component: PollComponent,
+},{
+  path: 'funfact' ,
+  component: FunFactComponent,
 }
 ];
 

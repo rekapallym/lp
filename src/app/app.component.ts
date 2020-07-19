@@ -23,4 +23,8 @@ export class AppComponent {
   routeToPoll(){
     this.route.navigate(['poll'],{});
   }
+
+  routeToFunFact(){
+    this.route.navigate(['funfact'],{});
+  }
 }

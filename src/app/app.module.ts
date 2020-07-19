@@ -12,6 +12,7 @@ import {ButtonModule} from 'primeng/button';
 import {CardModule} from 'primeng/card';
 import {FileUploadModule} from 'primeng/fileupload';
 import { PollComponent } from './components/poll/poll.component';
+import { FunFactComponent } from './components/fun-fact/fun-fact.component';
 
 
 
@@ -19,7 +20,8 @@ import { PollComponent } from './components/poll/poll.component';
   declarations: [
     AppComponent,
     ToughtOfDayComponent,
-    PollComponent
+    PollComponent,
+    FunFactComponent
   ],
   imports: [
     BrowserModule,
