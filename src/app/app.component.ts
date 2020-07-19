@@ -1,4 +1,8 @@
 import { Component } from '@angular/core';
+import { Router, ActivatedRoute, ParamMap } from '@angular/router';
+
+
+
 
 @Component({
   selector: 'app-root',
@@ -7,4 +11,16 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'lp';
+
+  constructor(
+    private route: Router,
+  ) {}
+
+  routeTod(){
+    this.route.navigate(['tod'],{});
+  }
+
+  routeToPoll(){
+    this.route.navigate(['poll'],{});
+  }
 }

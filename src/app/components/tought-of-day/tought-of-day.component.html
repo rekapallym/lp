@@ -1,0 +1,9 @@
+
+<p-card header="Thought Of The Day" [style]="{width: '360px'}">
+</p-card>
+<div><textarea pInputTextarea [(ngModel)]="property" [rows]="10" [cols]="60"></textarea></div>
+<div><input type="file" (change)="onFileSelected($event)"></div>
+<div><p-button label="Submit" (onClick)="handleClick()"></p-button></div>
+
+
+
