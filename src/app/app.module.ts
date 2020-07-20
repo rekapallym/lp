@@ -13,6 +13,11 @@ import {CardModule} from 'primeng/card';
 import {FileUploadModule} from 'primeng/fileupload';
 import { PollComponent } from './components/poll/poll.component';
 import { FunFactComponent } from './components/fun-fact/fun-fact.component';
+import { HomeComponent } from './components/home/home.component';
+import { WordOfDayComponent } from './components/word-of-day/word-of-day.component';
+import { AnnouncementsComponent } from './components/announcements/announcements.component';
+import { AptittudeComponent } from './components/aptittude/aptittude.component';
+import { FeedComponent } from './components/feed/feed.component';
 
 
 
@@ -21,7 +26,12 @@ import { FunFactComponent } from './components/fun-fact/fun-fact.component';
     AppComponent,
     ToughtOfDayComponent,
     PollComponent,
-    FunFactComponent
+    FunFactComponent,
+    HomeComponent,
+    WordOfDayComponent,
+    AnnouncementsComponent,
+    AptittudeComponent,
+    FeedComponent
   ],
   imports: [
     BrowserModule,

@@ -4,6 +4,11 @@ import {ToughtOfDayComponent} from './components/tought-of-day/tought-of-day.com
 import { AppComponent } from './app.component';
 import { PollComponent } from './components/poll/poll.component';
 import { FunFactComponent } from './components/fun-fact/fun-fact.component';
+import { HomeComponent } from './components/home/home.component';
+import { AptittudeComponent } from './components/aptittude/aptittude.component';
+import { AnnouncementsComponent } from './components/announcements/announcements.component';
+import { WordOfDayComponent } from './components/word-of-day/word-of-day.component';
+import { FeedComponent } from './components/feed/feed.component';
 
 
 
@@ -16,6 +21,22 @@ const routes: Routes = [{
 },{
   path: 'funfact' ,
   component: FunFactComponent,
+},
+{
+  path: '' ,
+  component: HomeComponent,
+},{
+  path: 'aptitude' ,
+  component: AptittudeComponent,
+},{
+  path: 'announce' ,
+  component: AnnouncementsComponent,
+},{
+  path: 'word' ,
+  component: WordOfDayComponent,
+},{
+  path: 'feed' ,
+  component: FeedComponent,
 }
 ];
 

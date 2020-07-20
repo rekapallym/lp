@@ -27,4 +27,22 @@ export class AppComponent {
   routeToFunFact(){
     this.route.navigate(['funfact'],{});
   }
+
+  home(){
+    this.route.navigate([''],{});
+  }
+
+  word(){
+    this.route.navigate(['word'],{});
+  }
+  feed(){
+    this.route.navigate(['feed'],{});
+  }
+  apptitude(){
+    this.route.navigate(['aptitude'],{});
+  }
+  announce(){
+    this.route.navigate(['announce'],{});
+  }
+
 }
