@@ -4,7 +4,25 @@
     </div>
   </section>
 <form [formGroup]= 'funFactForm'>
-<div>FunFact Question<input formControlName="question" > </div>
-<div>FunFact Answer:<input formControlName="ans"> </div>
+  <div class="input-group">
+    <div class="input-group-prepend">
+      <span class="input-group-text">Question</span>
+    </div>
+    <textarea class="form-control" aria-label="With textarea" formControlName="question"></textarea>
+  </div>
+  <div *ngIf="f.question.errors && f.question.errors.maxlength">enter less that 30 charecters </div>
+
+  <div class="input-group">
+    <div class="input-group-prepend">
+      <span class="input-group-text">Answer</span>
+    </div>
+    <textarea class="form-control" aria-label="With textarea" formControlName="ans"></textarea>
+  </div>
+  <div *ngIf="f.ans.errors && f.ans.errors.maxlength">enter less that 6 charectres </div>
+
 </form>
-<button (click)='funFactSubmit()'>Submit</button>
+
+
+<div class='row justify-content-center' >
+  <button type="button" class="btn btn-primary" (click)='funFactSubmit()' [disabled]= "funFactForm.invalid">submit</button>  
+</div>

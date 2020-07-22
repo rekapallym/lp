@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormControl } from '@angular/forms';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-fun-fact',
@@ -11,12 +11,27 @@ export class FunFactComponent implements OnInit {
   constructor() { }
 
   funFactForm = new FormGroup({
-    question : new FormControl(),
-    ans: new FormControl()
+    question : new FormControl('Enter Fun Fact Here', Validators.maxLength(50)),
+    ans: new FormControl('Fun Fact Answer', Validators.maxLength(25))
   })
 
   funFactSubmit(){
-    console.log(this.funFactForm.value)
+    const date = new Date();
+    const funFactObject = {
+    title: 'funFact',
+    description: this.funFactForm.value,
+    metadata: {
+      date: date.toString(),
+      time: date.getTime().toString()
+      }
+    };
+
+    console.log(funFactObject);
+
+  }
+
+  get f(){
+    return this.funFactForm.controls;
   }
 
   ngOnInit(): void {

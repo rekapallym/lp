@@ -4,11 +4,61 @@
     </div>
   </section>
 <form [formGroup]= 'pollForm'>
-<div>Question<input formControlName="question" > </div>
-<div>Option1:<input formControlName="ans1"> </div>
-<div>Option2:<input formControlName="ans2"> </div>
-<div>Option3:<input formControlName="ans3"> </div>
-<div>Option4:<input formControlName="ans4"> </div>
+  <div class="input-group">
+    <div class="input-group-prepend">
+      <span class="input-group-text">Question</span>
+    </div>
+    <textarea class="form-control" aria-label="With textarea" formControlName="question"></textarea>
+  </div>
+  <div *ngIf="f.question.errors && f.question.errors.maxlength">enter less that 30 charecters </div>
+<div class='container'>
+  <div class="row">
+    <div class="col">
+      <div class="input-group">
+        <div class="input-group-prepend">
+          <span class="input-group-text">Option-1</span>
+        </div>
+        <textarea class="form-control" aria-label="With textarea" formControlName="ans1"></textarea>
+      </div>
+      <div *ngIf="f.ans1.errors && f.ans1.errors.maxlength">enter less that 6 charectres </div>
+    </div>
+    <div class="col">
+      <div class="input-group">
+        <div class="input-group-prepend">
+          <span class="input-group-text">Option-2</span>
+        </div>
+        <textarea class="form-control" aria-label="With textarea" formControlName="ans2"></textarea>
+      </div>
+      <div *ngIf="f.ans2.errors && f.ans2.errors.maxlength">enter less that 6 charectres </div>
+
+    </div>
+  </div>
+  <div class="row">
+    <div class="col">
+      <div class="input-group">
+        <div class="input-group-prepend">
+          <span class="input-group-text">Option-3</span>
+        </div>
+        <textarea class="form-control" aria-label="With textarea" formControlName="ans3"></textarea>
+      </div>
+      <div *ngIf="f.ans3.errors && f.ans3.errors.maxlength">enter less that 6 charectres </div>
+
+    </div>
+    <div class="col">
+      <div class="input-group">
+        <div class="input-group-prepend">
+          <span class="input-group-text">Option-4</span>
+        </div>
+        <textarea class="form-control" aria-label="With textarea" formControlName="ans4"></textarea>
+      </div>
+      <div *ngIf="f.ans4.errors && f.ans4.errors.maxlength">enter less that 6 charectres </div>
+
+    </div>
+  </div>
+</div>
+
 </form>
 
-<button (click)='pollSubmit()'>submit</button>
+<div class='row justify-content-center' >
+  <button type="button" class="btn btn-primary" (click)='pollSubmit()' [disabled]= "pollForm.invalid">submit</button>  
+</div>

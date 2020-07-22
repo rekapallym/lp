@@ -3,3 +3,19 @@
       <h1>Announcements</h1>
     </div>
   </section>
+
+
+  <form [formGroup]= 'announceForm'>
+    <div class="input-group">
+      <div class="input-group-prepend">
+        <span class="input-group-text">Announcements</span>
+      </div>
+      <textarea class="form-control" aria-label="With textarea" formControlName="announcement"></textarea>
+    </div>
+    <div *ngIf="f.announcement.errors && f.announcement.errors.maxlength">enter less that 50 charecters </div>
+    <!-- <div>Announcement<input formControlName="announcement" > </div>    -->
+    </form>
+
+    <div class='row justify-content-center' >
+      <button type="button" class="btn btn-primary" (click)='onSubmit()' [disabled]= "announceForm.invalid">submit</button>  
+    </div>

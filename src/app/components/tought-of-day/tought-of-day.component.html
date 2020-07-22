@@ -4,13 +4,32 @@
       <h1>Thought Of The Day</h1>
     </div>
   </section>
-  <div class="input-group input-group-lg"> 
-    <input [(ngModel)]="property" type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-lg">
-  </div>
+
+  <form [formGroup] = 'thoughtForm'>
+    <div class="input-group">
+      <div class="input-group-prepend">
+        <span class="input-group-text">Tought of the day</span>
+      </div>
+      <textarea class="form-control" aria-label="With textarea" formControlName="content"></textarea>
+    </div>
+    <div *ngIf="f.content.errors && f.content.errors.maxlength">enter less that 30 charecters </div>
+  </form>
   
 
-<div><input  type="file" (change)="onFileSelected($event)"></div>
-<div><p-button label="Submit" (onClick)="handleClick()"></p-button></div>
+  <div class="input-group mb-3">
+    <div class="input-group-prepend">
+      <span class="input-group-text" id="inputGroupFileAddon01">Upload Image</span>
+    </div>
+    <div class="custom-file">
+      <input type="file" (change)="onFileSelected($event)" class="custom-file-input" id="inputGroupFile01" aria-describedby="inputGroupFileAddon01">
+      <label class="custom-file-label" for="file">Choose image</label>
+    </div>
+  </div>
+
+
+<div class='row justify-content-center' >
+  <button type="button" class="btn btn-primary" (click)='onSubmit()' [disabled]= "thoughtForm.invalid">submit</button>  
+</div>
 
 
 
