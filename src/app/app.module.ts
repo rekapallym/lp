@@ -2,15 +2,9 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
-
-
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ToughtOfDayComponent } from './components/tought-of-day/tought-of-day.component';
-import {ButtonModule} from 'primeng/button';
-import {CardModule} from 'primeng/card';
-import {FileUploadModule} from 'primeng/fileupload';
 import { PollComponent } from './components/poll/poll.component';
 import { FunFactComponent } from './components/fun-fact/fun-fact.component';
 import { HomeComponent } from './components/home/home.component';
@@ -18,6 +12,13 @@ import { WordOfDayComponent } from './components/word-of-day/word-of-day.compone
 import { AnnouncementsComponent } from './components/announcements/announcements.component';
 import { AptittudeComponent } from './components/aptittude/aptittude.component';
 import { FeedComponent } from './components/feed/feed.component';
+import { AngularFireModule} from '@angular/fire';
+import { AngularFirestoreModule } from '@angular/fire/firestore';
+import { environment } from 'src/environments/environment';
+import { FeedserviceService } from './shared/feedservice.service';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ToastrModule } from 'ngx-toastr';
+
 
 
 
@@ -37,12 +38,13 @@ import { FeedComponent } from './components/feed/feed.component';
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    ButtonModule,
-    CardModule,
-    FileUploadModule,
     ReactiveFormsModule,
+    AngularFireModule.initializeApp(environment.firebaseConfig),
+    AngularFirestoreModule,
+    BrowserAnimationsModule, 
+    ToastrModule.forRoot(),
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent, FeedserviceService]
 })
 export class AppModule { }

@@ -4,25 +4,21 @@
     </div>
   </section>
 <form [formGroup]= 'funFactForm'>
-  <div class="input-group">
-    <div class="input-group-prepend">
-      <span class="input-group-text">Question</span>
-    </div>
-    <textarea class="form-control" aria-label="With textarea" formControlName="question"></textarea>
+  <div class="input-group form-group">
+
+    <textarea class="form-control" aria-label="With textarea" formControlName="question" placeholder="Enter FunFact Question Here"></textarea>
   </div>
   <div *ngIf="f.question.errors && f.question.errors.maxlength">enter less that 30 charecters </div>
 
-  <div class="input-group">
-    <div class="input-group-prepend">
-      <span class="input-group-text">Answer</span>
-    </div>
-    <textarea class="form-control" aria-label="With textarea" formControlName="ans"></textarea>
+  <div class="input-group form-group">
+
+    <textarea class="form-control" aria-label="With textarea" formControlName="ans" placeholder="Enter FunFact Answer Here"></textarea>
   </div>
   <div *ngIf="f.ans.errors && f.ans.errors.maxlength">enter less that 6 charectres </div>
 
 </form>
 
 
-<div class='row justify-content-center' >
-  <button type="button" class="btn btn-primary" (click)='funFactSubmit()' [disabled]= "funFactForm.invalid">submit</button>  
+<div class='justify-content-center' >
+  <button type="button" class="btn btn-lg btn-block btn-info" (click)='funFactSubmit()' [disabled]= "funFactForm.invalid">submit</button>  
 </div>

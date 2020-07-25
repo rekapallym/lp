@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { AngularFirestore } from '@angular/fire/firestore';
+import { v4 as uuid } from 'uuid';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-poll',
@@ -8,14 +11,14 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 })
 export class PollComponent implements OnInit {
 
-  constructor() { }
+  constructor(private firestore : AngularFirestore, private toastr: ToastrService) { }
   
   pollForm = new FormGroup({
-  question : new FormControl('Type your poll question here?', Validators.maxLength(50)),
-  ans1 : new FormControl('option-1',Validators.maxLength(10)),
-  ans2 : new FormControl('option-2',Validators.maxLength(10)),
-  ans3 : new FormControl('option-3',Validators.maxLength(10)),
-  ans4 : new FormControl('option-4',Validators.maxLength(10))
+  question : new FormControl('', Validators.maxLength(50)),
+  ans1 : new FormControl('',Validators.maxLength(10)),
+  ans2 : new FormControl('',Validators.maxLength(10)),
+  ans3 : new FormControl('',Validators.maxLength(10)),
+  ans4 : new FormControl('',Validators.maxLength(10))
   });
 
   
@@ -23,13 +26,17 @@ export class PollComponent implements OnInit {
   pollSubmit(){
     const date = new Date();
     const pollObject = {
+    id: uuid(),
     title: 'Poll',
     description: this.pollForm.value,
     metadata: {
-      date: date.toString(),
+      date: date.toDateString(),
       time: date.getTime().toString()
       } 
     }
+    this.firestore.collection('content').add(pollObject);
+    this.toastr.success('Sucessfully Submitted to FireStore!!');
+
 
     console.log(pollObject);
   }

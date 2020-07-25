@@ -6,29 +6,24 @@
   </section>
 
   <form [formGroup] = 'thoughtForm'>
-    <div class="input-group">
-      <div class="input-group-prepend">
-        <span class="input-group-text">Tought of the day</span>
-      </div>
-      <textarea class="form-control" aria-label="With textarea" formControlName="content"></textarea>
+    <div class="input-group form-group">
+      <textarea class="form-control" aria-label="With textarea" formControlName="content" placeholder="Enter Thought Here"></textarea>
     </div>
-    <div *ngIf="f.content.errors && f.content.errors.maxlength">enter less that 30 charecters </div>
+    <div *ngIf="f.content.errors && f.content.errors.maxlength">enter less that 50 charecters</div>
   </form>
   
 
-  <div class="input-group mb-3">
-    <div class="input-group-prepend">
-      <span class="input-group-text" id="inputGroupFileAddon01">Upload Image</span>
-    </div>
+  <div class="input-group mb-3 form-group">
+   
     <div class="custom-file">
-      <input type="file" (change)="onFileSelected($event)" class="custom-file-input" id="inputGroupFile01" aria-describedby="inputGroupFileAddon01">
+      <input type="file" (change)="onFileSelected($event)" class="custom-file-input form-control" id="inputGroupFile01" aria-describedby="inputGroupFileAddon01">
       <label class="custom-file-label" for="file">Choose image</label>
     </div>
   </div>
 
 
-<div class='row justify-content-center' >
-  <button type="button" class="btn btn-primary" (click)='onSubmit()' [disabled]= "thoughtForm.invalid">submit</button>  
+<div class=' justify-content-center form-group'>
+  <button type="button" class="btn btn-lg btn-block btn-info" (click)='onSubmit()' [disabled]= "thoughtForm.invalid">submit</button>  
 </div>
 
 
