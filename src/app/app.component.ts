@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
+import { ImageserviceService } from './shared/imageservice.service';
 
 
 
@@ -9,13 +10,16 @@ import { Router, ActivatedRoute, ParamMap } from '@angular/router';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent {
+export class AppComponent implements OnInit{
   title = 'lp';
 
   constructor(
     private route: Router,
+    private service: ImageserviceService
   ) {}
-
+  ngOnInit() {
+    // this.service.getImageDetailList(); 
+  }
   routeTod(){
     this.route.navigate(['tod'],{});
   }

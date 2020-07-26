@@ -15,9 +15,10 @@ import { FeedComponent } from './components/feed/feed.component';
 import { AngularFireModule} from '@angular/fire';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { environment } from 'src/environments/environment';
-import { FeedserviceService } from './shared/feedservice.service';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
+import { AngularFireStorageModule } from '@angular/fire/storage';
+
 
 
 
@@ -41,10 +42,11 @@ import { ToastrModule } from 'ngx-toastr';
     ReactiveFormsModule,
     AngularFireModule.initializeApp(environment.firebaseConfig),
     AngularFirestoreModule,
-    BrowserAnimationsModule, 
+    BrowserAnimationsModule,
     ToastrModule.forRoot(),
+    AngularFireStorageModule,
   ],
   providers: [],
-  bootstrap: [AppComponent, FeedserviceService]
+  bootstrap: [AppComponent]
 })
 export class AppModule { }
