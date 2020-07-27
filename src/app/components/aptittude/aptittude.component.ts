@@ -1,5 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { v4 as uuid } from 'uuid';
+import { AngularFirestore } from '@angular/fire/firestore';
+import { ToastrService } from 'ngx-toastr';
+
 
 @Component({
   selector: 'app-aptittude',
@@ -8,26 +12,30 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 })
 export class AptittudeComponent  {
 
-  constructor() { }
+  constructor(private firestore : AngularFirestore, private toastr: ToastrService) { }
 
   appForm = new FormGroup({
-    question : new FormControl('Type your Aptitude question here?', Validators.maxLength(50)),
-    ans1 : new FormControl('option-1', Validators.maxLength(10)),
-    ans2 : new FormControl('option-2', Validators.maxLength(10)),
-    ans3 : new FormControl('option-3', Validators.maxLength(10)),
-    ans4 : new FormControl('option-4', Validators.maxLength(10))
+    question : new FormControl('', Validators.maxLength(50)),
+    ans1 : new FormControl('', Validators.maxLength(10)),
+    ans2 : new FormControl('', Validators.maxLength(10)),
+    ans3 : new FormControl('', Validators.maxLength(10)),
+    ans4 : new FormControl('', Validators.maxLength(10)),
+    correctAns : new FormControl('', Validators.maxLength(10))
     });
 
     onSubmit(){
       const date = new Date();
       const appObject = {
+    id: uuid(),
     title: 'aptitude',
     description: this.appForm.value,
     metadata: {
-      date: date.toString(),
+      date: date.toDateString(),
       time: date.getTime().toString()
       }
     };
+      this.firestore.collection('content').add(appObject);
+      this.toastr.success('Sucessfully Submitted to FireStore!!');
 
       console.log(appObject);
     }

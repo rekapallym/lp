@@ -1,5 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { AngularFirestore } from '@angular/fire/firestore';
+import { ToastrService } from 'ngx-toastr';
+import { v4 as uuid } from 'uuid';
+
 
 @Component({
   selector: 'app-fun-fact',
@@ -8,24 +12,28 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 })
 export class FunFactComponent implements OnInit {
 
-  constructor() { }
+  constructor(private firestore : AngularFirestore, private toastr: ToastrService) { }
+
 
   funFactForm = new FormGroup({
-    question : new FormControl('Enter Fun Fact Here', Validators.maxLength(50)),
-    ans: new FormControl('Fun Fact Answer', Validators.maxLength(25))
+    question : new FormControl('', Validators.maxLength(50)),
+    ans: new FormControl('', Validators.maxLength(25))
   })
 
   funFactSubmit(){
     const date = new Date();
     const funFactObject = {
-    title: 'funFact',
+    id: uuid(),
+    title: 'funfact',
     description: this.funFactForm.value,
     metadata: {
-      date: date.toString(),
+      date: date.toDateString(),
       time: date.getTime().toString()
       }
     };
 
+    this.firestore.collection('content').add(funFactObject);
+    this.toastr.success('Sucessfully Submitted to FireStore!!');
     console.log(funFactObject);
 
   }

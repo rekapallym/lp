@@ -1,5 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { v4 as uuid } from 'uuid';
+import { AngularFirestore } from '@angular/fire/firestore';
+import { ToastrService } from 'ngx-toastr';
+
 
 @Component({
   selector: 'app-word-of-day',
@@ -8,12 +12,13 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 })
 export class WordOfDayComponent  {
 
-  constructor() { }
+  constructor( private firestore : AngularFirestore,private toastr: ToastrService) { }
 
   seletedFile = null;
 
   wordForm = new FormGroup({
-    word : new FormControl('Enter thought of the day here', Validators.maxLength(50))
+    word : new FormControl('', Validators.maxLength(50)),
+    wordExplain : new FormControl('', Validators.maxLength(50))
   })
 
   get f(){
@@ -26,6 +31,7 @@ export class WordOfDayComponent  {
   onSubmit(){
     let date = new Date();
     const wordObject = {
+      id: uuid(),
       title: 'word_of_the_day',
       description: this.wordForm.value,
       image : this.seletedFile,
@@ -34,6 +40,8 @@ export class WordOfDayComponent  {
         time: date.getTime().toString(),
       },
     };
+    this.firestore.collection('content').add(wordObject);
+    this.toastr.success('Sucessfully Submitted to FireStore!!');
     console.log(wordObject);
   }
 
