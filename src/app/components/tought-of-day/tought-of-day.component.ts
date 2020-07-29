@@ -28,7 +28,7 @@ export class ToughtOfDayComponent implements OnInit{
     content : new FormControl('', Validators.maxLength(50)),
     imageUrl : new FormControl()
   });
-
+  
   ngOnInit() {
     this.resetForm();
     this.service.getImageDetailList(); 
@@ -41,7 +41,7 @@ export class ToughtOfDayComponent implements OnInit{
   onFileSelected(event) {
     this.seletedImage = event.target.files[0];
   }
-  onSubmit(formValue){
+   onSubmit(formValue){
 
     if(this.seletedImage != null){
     let filePath =  `todImages/${this.seletedImage.name}_${this.date.getTime()}`;
@@ -51,12 +51,12 @@ export class ToughtOfDayComponent implements OnInit{
       finalize(() => {
         fileRef.getDownloadURL().subscribe((url) => {
           formValue['imageUrl'] = url;
+          this.firestore.collection('content').add(toughtObject);
+
           this.resetForm();
         });
       })
     ).subscribe();
-  }
-
     const toughtObject = {
       id: uuid(),
       title: 'thought_of_the_day',
@@ -66,11 +66,24 @@ export class ToughtOfDayComponent implements OnInit{
         time: this.date.getTime().toString(),
       },
     };
+    console.log(toughtObject);
 
+  }else{
+    const toughtObject = {
+      id: uuid(),
+      title: 'thought_of_the_day',
+      description: this.thoughtForm.value,
+      metadata: {
+        date: this.date.toDateString(),
+        time: this.date.getTime().toString(),
+      },
+    };
     this.firestore.collection('content').add(toughtObject);
+    console.log(toughtObject);
+
+  }
     this.toastr.success('Sucessfully Submitted to FireStore!!');
 
-    console.log(toughtObject);
   }
 
   resetForm() {

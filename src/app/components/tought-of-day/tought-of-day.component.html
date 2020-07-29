@@ -6,12 +6,14 @@
   </section>
 
   <form [formGroup] = 'thoughtForm' (submit)="onSubmit(thoughtForm.value)">
+    <label>Enter Your Thought below:</label>
     <div class="input-group form-group">
-      <textarea class="form-control" aria-label="With textarea" formControlName="content" placeholder="Enter Thought Here"></textarea>
+     
+      <input class="form-control" aria-label="With textarea" formControlName="content" placeholder="Enter Thought Here" required > 
     </div>
-    <div class='text-danger' *ngIf="f.content.errors && f.content.errors.maxlength">enter less that 50 charecters</div>
+    <div class='alert alert-danger' *ngIf="f.content.errors && f.content.errors.maxlength">enter less that 50 charecters</div>
 
-
+    <label>Upload a Image Below:</label>
     <div class="form-group">
       <input type='file' class="form-control" formControlName='imageUrl' (change)="onFileSelected($event)"> 
     </div>

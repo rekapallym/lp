@@ -3,28 +3,28 @@
       <h1>Poll</h1>
     </div>
   </section>
-<form [formGroup]= 'pollForm'>
+<form [formGroup]= 'pollForm' (submit)="pollSubmit()">
   <div class="input-group form-group">
-   
-    <textarea class="form-control" aria-label="With textarea" formControlName="question" placeholder="Enter Poll Question here"></textarea>
+    <input  class="form-control" aria-label="With textarea" formControlName="question" placeholder="Enter Poll Question here" required>
+
   </div>
-  <div *ngIf="f.question.errors && f.question.errors.maxlength">enter less that 50 charecters </div>
+  <div class="alert alert-danger" *ngIf="f.question.errors && f.question.errors.maxlength">enter less that 50 charecters </div>
 
 
   <div class="row">
     <div class="col">
       <div class="input-group form-group">
-        <input  class="form-control" formControlName="ans1" placeholder="Option-1">
+        <input  class="form-control" formControlName="ans1" placeholder="Option-1" required>
 
       </div>
-      <div *ngIf="f.ans1.errors && f.ans1.errors.maxlength">enter less that 6 charectres </div>
+      <div class="alert alert-danger"  *ngIf="f.ans1.errors && f.ans1.errors.maxlength">enter less that 6 charectres </div>
     </div>
 
     <div class="col">
       <div class="input-group form-group"> 
-        <input  class="form-control" formControlName="ans2" placeholder="Option-2">
+        <input  class="form-control" formControlName="ans2" placeholder="Option-2" required>
       </div>
-      <div *ngIf="f.ans2.errors && f.ans2.errors.maxlength">enter less that 6 charectres </div>
+      <div class="alert alert-danger" *ngIf="f.ans2.errors && f.ans2.errors.maxlength">enter less that 6 charectres </div>
 
     </div>
   </div>
@@ -33,19 +33,20 @@
       <div class="input-group form-group">
         <input  class="form-control" formControlName="ans3" placeholder="Option-3">
       </div>
-      <div *ngIf="f.ans3.errors && f.ans3.errors.maxlength">enter less that 6 charectres </div>
+      <div class="alert alert-danger"  *ngIf="f.ans3.errors && f.ans3.errors.maxlength">enter less that 6 charectres </div>
 
     </div>
     <div class="col">
       <div class="input-group form-group">
         <input  class="form-control" formControlName="ans4" placeholder="Option-4">
       </div>
-      <div *ngIf="f.ans4.errors && f.ans4.errors.maxlength">enter less that 6 charectres </div>
+      <div class="alert alert-danger"  *ngIf="f.ans4.errors && f.ans4.errors.maxlength">enter less that 6 charectres </div>
 
     </div>
   </div>
+  <div class='justify-content-center' >
+    <button type="submit" class="btn btn-lg btn-block btn-info"  [disabled]= "pollForm.invalid">submit</button>  
+  </div>
 </form>
 
-<div class='justify-content-center' >
-  <button type="button" class="btn btn-lg btn-block btn-info"  (click)='pollSubmit()' [disabled]= "pollForm.invalid">submit</button>  
-</div>
+

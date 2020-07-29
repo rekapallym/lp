@@ -17,7 +17,7 @@ export class FunFactComponent implements OnInit {
 
   funFactForm = new FormGroup({
     question : new FormControl('', Validators.maxLength(50)),
-    ans: new FormControl('', Validators.maxLength(25))
+    ans: new FormControl('', Validators.maxLength(50))
   })
 
   funFactSubmit(){

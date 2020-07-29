@@ -23,6 +23,7 @@ export class AnnouncementsComponent implements OnInit  {
 
   announceForm = new FormGroup({
     announcement : new FormControl('', Validators.maxLength(50)),
+    announceLink : new FormControl(),
     imageUrl : new FormControl()
   });
   ngOnInit() {
@@ -43,6 +44,7 @@ export class AnnouncementsComponent implements OnInit  {
           finalize(() => {
             fileRef.getDownloadURL().subscribe((url) => {
               formValue.imageUrl = url;
+              this.firestore.collection('content').doc("TOD").collection('tod').add(this.announceObject);
               this.resetForm();
             });
           })
@@ -57,7 +59,6 @@ export class AnnouncementsComponent implements OnInit  {
             time: this.date.getTime().toString()
             }
           };
-          this.firestore.collection('content').add(this.announceObject);
 
       } else{
         this.announceObject = {
@@ -69,7 +70,7 @@ export class AnnouncementsComponent implements OnInit  {
             time: this.date.getTime().toString()
             }
           };
-          this.firestore.collection('content').add(this.announceObject);
+          this.firestore.collection('content').doc("TOD").collection('tod').add(this.announceObject);
 
       }
       this.toastr.success('Sucessfully Submitted to FireStore!!');

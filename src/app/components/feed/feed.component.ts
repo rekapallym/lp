@@ -26,7 +26,8 @@ export class FeedComponent implements OnInit {
     feedForm = new FormGroup({
       content : new FormControl('', Validators.maxLength(50)),
       category: new FormControl(''),
-      imageUrl : new FormControl()
+      imageUrl : new FormControl(),
+      title : new FormControl()
     });
 
 
@@ -56,8 +57,6 @@ export class FeedComponent implements OnInit {
           });
         })
       ).subscribe();
-    }
-  
       const feedObject = {
         id: uuid(),
         title: 'feed',
@@ -67,11 +66,25 @@ export class FeedComponent implements OnInit {
           time: this.date.getTime().toString(),
         },
       };
-  
       this.firestore.collection('content').add(feedObject);
-      this.toastr.success('Sucessfully Submitted to FireStore!!');
-  
       console.log(feedObject);
+
+    }else {
+      const feedObject = {
+        id: uuid(),
+        title: 'feed',
+        description: this.feedForm.value,
+        metadata: {
+          date: this.date.toDateString(),
+          time: this.date.getTime().toString(),
+        },
+      };
+      this.firestore.collection('content').add(feedObject);
+      console.log(feedObject);
+
+    }
+
+      this.toastr.success('Sucessfully Submitted to FireStore!!');    
     }
   
     resetForm() {
