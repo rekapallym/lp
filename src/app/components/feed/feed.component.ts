@@ -84,7 +84,7 @@ export class FeedComponent implements OnInit {
 
     }
 
-      this.toastr.success('Sucessfully Submitted to FireStore!!');    
+      this.toastr.success('Sucessfully Submitted to FireStore!!');
     }
   
     resetForm() {
