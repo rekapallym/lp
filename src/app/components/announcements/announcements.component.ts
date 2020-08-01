@@ -44,7 +44,7 @@ export class AnnouncementsComponent implements OnInit  {
           finalize(() => {
             fileRef.getDownloadURL().subscribe((url) => {
               formValue.imageUrl = url;
-              this.firestore.collection('content').doc("TOD").collection('tod').add(this.announceObject);
+              this.firestore.collection('content').doc("announce").collection('announce').add(this.announceObject);
               this.resetForm();
             });
           })
@@ -70,7 +70,7 @@ export class AnnouncementsComponent implements OnInit  {
             time: this.date.getTime().toString()
             }
           };
-          this.firestore.collection('content').doc("TOD").collection('tod').add(this.announceObject);
+          this.firestore.collection('content').doc("announce").collection('announce').add(this.announceObject);
 
       }
       this.toastr.success('Sucessfully Submitted to FireStore!!');
