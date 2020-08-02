@@ -66,7 +66,7 @@ export class FeedComponent implements OnInit {
           time: this.date.getTime().toString(),
         },
       };
-      this.firestore.collection('content').add(feedObject);
+      this.firestore.collection('content').doc("feed").collection('feed').add(feedObject);
       console.log(feedObject);
 
     }else {
@@ -79,7 +79,9 @@ export class FeedComponent implements OnInit {
           time: this.date.getTime().toString(),
         },
       };
-      this.firestore.collection('content').add(feedObject);
+      
+      this.firestore.collection('content').doc("feed").collection('feed').add(feedObject);
+
       console.log(feedObject);
 
     }
@@ -91,5 +93,27 @@ export class FeedComponent implements OnInit {
       this.feedForm.reset();
     }
   
-
 }
+// }
+// {
+//         id: uuid(),
+//         title: 'feed',
+//         description: this.feedForm.value,
+//         author: 'test',
+//         sub_category :'test',
+//         card_level: 'test',
+//         content: 'test',
+//         description: 'test',
+//         language : 'test',
+//         url: "test",
+//         imageUrl :"test",
+//         title:'test',
+//         published:"2020-07-15 00:40:50 +0000",
+//         id:"e714cb96-6bf2-4171-9748-1afc92b2d18b",
+//         source:"CNN",
+//         type:"article",
+//         metadata: {
+//           date: this.date.toDateString(),
+//           time: this.date.getTime().toString(),
+//         },
+//       }

@@ -34,7 +34,8 @@ export class PollComponent implements OnInit {
       time: date.getTime().toString()
       } 
     }
-    this.firestore.collection('content').add(pollObject);
+    this.firestore.collection('content').doc("poll").collection('poll').add(pollObject);
+
     this.toastr.success('Sucessfully Submitted to FireStore!!');
 
 

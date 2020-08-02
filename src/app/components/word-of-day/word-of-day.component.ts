@@ -50,7 +50,7 @@ export class WordOfDayComponent  {
         finalize(() => {
           fileRef.getDownloadURL().subscribe((url) => {
             formValue['imageUrl'] = url;
-            this.firestore.collection('content').add(wordObject);
+            this.firestore.collection('content').doc("wod").collection('wod').add(wordObject);
             this.resetForm();
           });
         })
@@ -75,7 +75,9 @@ export class WordOfDayComponent  {
           time: this.date.getTime().toString(),
         },
       };
-      this.firestore.collection('content').add(wordObject);
+
+    this.firestore.collection('content').doc("wod").collection('wod').add(wordObject);
+
       console.log(wordObject);
 
     }

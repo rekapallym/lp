@@ -51,7 +51,7 @@ export class ToughtOfDayComponent implements OnInit{
       finalize(() => {
         fileRef.getDownloadURL().subscribe((url) => {
           formValue['imageUrl'] = url;
-          this.firestore.collection('content').add(toughtObject);
+          this.firestore.collection('content').doc("tod").collection('tod').add(toughtObject);
 
           this.resetForm();
         });
@@ -78,7 +78,8 @@ export class ToughtOfDayComponent implements OnInit{
         time: this.date.getTime().toString(),
       },
     };
-    this.firestore.collection('content').add(toughtObject);
+    this.firestore.collection('content').doc("tod").collection('tod').add(toughtObject);
+
     console.log(toughtObject);
 
   }

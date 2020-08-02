@@ -32,7 +32,8 @@ export class FunFactComponent implements OnInit {
       }
     };
 
-    this.firestore.collection('content').add(funFactObject);
+     this.firestore.collection('content').doc("funfact").collection('funfact').add(funFactObject);
+
     this.toastr.success('Sucessfully Submitted to FireStore!!');
     console.log(funFactObject);
 

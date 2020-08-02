@@ -34,7 +34,8 @@ export class AptittudeComponent  {
       time: date.getTime().toString()
       }
     };
-      this.firestore.collection('content').add(appObject);
+       this.firestore.collection('content').doc("apptitude").collection('apptitude').add(appObject);
+
       this.toastr.success('Sucessfully Submitted to FireStore!!');
 
       console.log(appObject);
