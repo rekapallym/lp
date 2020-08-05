@@ -84,6 +84,7 @@ export class WordOfDayComponent  {
     
     
     this.toastr.success('Sucessfully Submitted to FireStore!!');
+    this.resetForm();
 
   }
 

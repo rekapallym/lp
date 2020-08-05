@@ -35,6 +35,7 @@ export class FunFactComponent implements OnInit {
      this.firestore.collection('content').doc("funfact").collection('funfact').add(funFactObject);
 
     this.toastr.success('Sucessfully Submitted to FireStore!!');
+    this.resetForm();
     console.log(funFactObject);
 
   }
@@ -45,5 +46,8 @@ export class FunFactComponent implements OnInit {
 
   ngOnInit(): void {
   }
+  resetForm() {
+      this.funFactForm.reset();
+    }
 
 }

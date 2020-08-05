@@ -81,6 +81,7 @@ export class FeedComponent implements OnInit {
       };
       
       this.firestore.collection('content').doc("feed").collection('feed').add(feedObject);
+      this.resetForm();
 
       console.log(feedObject);
 

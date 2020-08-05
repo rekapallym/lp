@@ -37,11 +37,15 @@ export class AptittudeComponent  {
        this.firestore.collection('content').doc("apptitude").collection('apptitude').add(appObject);
 
       this.toastr.success('Sucessfully Submitted to FireStore!!');
+      this.resetForm();
 
       console.log(appObject);
     }
 
     get f(){
       return this.appForm.controls;
+    }
+    resetForm() {
+      this.appForm.reset();
     }
 }

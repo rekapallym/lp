@@ -37,7 +37,7 @@ export class PollComponent implements OnInit {
     this.firestore.collection('content').doc("poll").collection('poll').add(pollObject);
 
     this.toastr.success('Sucessfully Submitted to FireStore!!');
-
+    this.resetForm();
 
     console.log(pollObject);
   }
@@ -49,4 +49,8 @@ export class PollComponent implements OnInit {
 
   ngOnInit(): void {
   }
+
+  resetForm() {
+      this.pollForm.reset();
+    }
 }

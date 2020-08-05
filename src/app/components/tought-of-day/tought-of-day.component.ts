@@ -52,8 +52,6 @@ export class ToughtOfDayComponent implements OnInit{
         fileRef.getDownloadURL().subscribe((url) => {
           formValue['imageUrl'] = url;
           this.firestore.collection('content').doc("tod").collection('tod').add(toughtObject);
-
-          this.resetForm();
         });
       })
     ).subscribe();
@@ -83,7 +81,9 @@ export class ToughtOfDayComponent implements OnInit{
     console.log(toughtObject);
 
   }
+  
     this.toastr.success('Sucessfully Submitted to FireStore!!');
+    this.resetForm();
 
   }
 
