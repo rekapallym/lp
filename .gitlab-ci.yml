@@ -1,0 +1,116 @@
+stages:
+    - build
+    - plan
+    - deploy
+
+.default_build:
+  image: docker:latest
+  tags:
+    - lpdocker
+  #variables:
+  #  DOCKER_TLS_CERTDIR: ""  
+  services:
+    - docker:18-dind  
+
+.default_build_app:
+  extends: .default_build
+  stage: build
+  variables:
+    ci_token: $ci_token 
+  before_script:
+    - docker login -u gitlab-ci-deploy -p $ci_token  $CI_REGISTRY  
+  script:
+    - export DOCKER_HOST="tcp://localhost:2375"
+    - docker build -t $CI_REGISTRY_IMAGE/$app_env:$CI_PIPELINE_ID .
+    - docker push $CI_REGISTRY_IMAGE/$app_env:$CI_PIPELINE_ID
+    
+.default_deploy_to_eks_old:
+  image: ananddaparthi/gcterraform:1.0
+  tags:
+    - lpdocker
+  variables:
+    gcloud_auth: $gcloud_auth
+    replicas: $replicas
+    image_name: $image_name
+    docker_auth: $docker_auth
+  before_script:
+    - ls
+    - cd devops/$app_env
+    - echo -n $gcloud_auth | base64 -d > creds.json
+    - echo -n $docker_auth | base64 -d > docker-config.json    
+    - gcloud auth activate-service-account --key-file=creds.json
+    - gcloud container clusters get-credentials testcluster --zone us-east1 --project directed-beacon-279519
+
+.default_deploy_to_eks:
+  image: ananddaparthi/gcterraform:1.0
+  stage: deploy
+  tags:
+    - dockerr 
+  variables:
+    gcloud_auth: $gcloud_auth
+    replicas: $replicas
+    image_name: $image_name
+    docker_auth: $docker_auth
+  before_script:
+    - cd devops/$app_env
+    - echo -n $gcloud_auth | base64 -d > creds.json
+    - echo -n $docker_auth | base64 -d > docker-config.json    
+    - gcloud auth activate-service-account --key-file=creds.json
+    - gcloud container clusters get-credentials testcluster --zone us-east1 --project directed-beacon-279519
+  script:
+    - terraform init
+    - terraform plan -var="image_name=$CI_REGISTRY_IMAGE/$app_env:$CI_PIPELINE_ID" -var="replicas=$replicas" -var="servicetype=NodePort" -var="containerport=8081" -var="targetport=8081" -var="namespace=$app_env" -var="expressjs_dns=$dns" -out=plan.tfplan
+    - terraform apply "plan.tfplan"
+
+dev_build:
+  extends: .default_build_app
+  variables:
+    app_env: develop
+  only:
+    #- develop
+    - master    
+    
+#prod_build:
+#  extends: .default_build_app
+#  variables:
+#    app_env: production
+#  only:
+#    - master
+
+#plan_gke:
+#  extends: .default_deploy_to_eks 
+#  stage: plan
+#  script:
+#    - terraform init
+#    - terraform plan -var="image_name=$CI_REGISTRY_IMAGE/app:$CI_PIPELINE_ID" -var="replicas=$replicas" -var="servicetype=NodePort" -var="containerport=8081" -var="targetport=8081" -var="namespace=dev" -var="expressjs_dns=docker-dev" -out=plan.tfplan
+#  artifacts:
+#    paths:
+#    - devops/dev/plan.tfplan
+    
+#provision_gke:
+#  extends: .default_deploy_to_eks
+#  stage: deploy
+#  needs:
+#    - job: test_gke
+#      artifacts: true
+#  script:
+#    - ls
+#    - terraform init
+#    - terraform apply "plan.tfplan"
+#  when: manual
+###
+#dev_deploy:
+#  extends: .default_deploy_to_eks
+#  variables:
+#    app_env: develop
+#    dns: docker-dev
+#  only:
+#    - develop
+
+#prod_deploy:
+#  extends: .default_deploy_to_eks
+#  variables:
+#    app_env: production
+#    dns: docker-prod
+#  only:
+#    - master 
