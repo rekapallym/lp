@@ -88,7 +88,7 @@ dev_build:
     - master
   script:
     - ls -lrt
-    #- ng build --prod
+    - ng build --prod
     - ls -lrt
     - docker ps  
 
@@ -100,10 +100,7 @@ clean:
   - echo "Time to clean up"
   after_script:
   - echo $CI_PROJECT_DIR
-  - set "BUILD_DIR=%CI_PROJECT_DIR%"
-  - set "BUILD_DIR=%BUILD_DIR:/=\%"
-  - echo "Cleaning %BUILD_DIR%"
-  - rm -r %BUILD_DIR%
+  - rm -r $CI_PROJECT_DIR
   #- exit /b 0
 
 
