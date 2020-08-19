@@ -10,7 +10,8 @@ stages:
   #variables:
   #  DOCKER_TLS_CERTDIR: ""  
   services:
-    - docker:18-dind  
+    - docker:dind
+    #- docker:18-dind  
 
 .default_build_app:
   extends: .default_build
