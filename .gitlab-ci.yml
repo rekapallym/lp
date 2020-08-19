@@ -18,10 +18,10 @@ stages:
   stage: build
   variables:
     ci_token: $ci_token 
-  before_script:
-    - docker login -u gitlab-ci-deploy -p $ci_token  $CI_REGISTRY  
+  #before_script:
+  #  - docker login -u gitlab-ci-deploy -p $ci_token  $CI_REGISTRY  
   script:
-    - export DOCKER_HOST="tcp://localhost:2375"
+    - export DOCKER_HOST="tcp://localhost:2378"
     - docker build -t $CI_REGISTRY_IMAGE/$app_env:$CI_PIPELINE_ID .
     - docker push $CI_REGISTRY_IMAGE/$app_env:$CI_PIPELINE_ID
     
