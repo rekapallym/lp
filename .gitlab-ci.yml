@@ -93,6 +93,8 @@ dev_build:
     - docker ps  
 
 clean:
+  tags:
+    - lpdocker  
   stage: cleanup
   script:
   - echo "Time to clean up"
