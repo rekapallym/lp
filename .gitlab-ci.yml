@@ -7,7 +7,9 @@ stages:
   image: docker:latest
   tags:
     - lpdocker
-  #variables:
+  variables:
+    DOCKER_DRIVER: overlay2
+    #IMAGE_BUILD_CONTEXT: .
   #  DOCKER_TLS_CERTDIR: ""  
   services:
     - docker:dind
@@ -18,10 +20,10 @@ stages:
   stage: build
   variables:
     ci_token: $ci_token 
-  #before_script:
-  #  - docker login -u gitlab-ci-deploy -p $ci_token  $CI_REGISTRY  
+  before_script:
+    - docker login -u gitlab-ci-deploy -p $ci_token  $CI_REGISTRY  
   script:
-    - export DOCKER_HOST="tcp://localhost:2378"
+    - export DOCKER_HOST="tcp://localhost:2375"
     - docker build -t $CI_REGISTRY_IMAGE/$app_env:$CI_PIPELINE_ID .
     - docker push $CI_REGISTRY_IMAGE/$app_env:$CI_PIPELINE_ID
     
