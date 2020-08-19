@@ -86,6 +86,7 @@ dev_build:
     #- develop
     - master
   script:
+    - ls -lrt
     - docker ps  
 
 
