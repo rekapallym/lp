@@ -12,8 +12,8 @@ stages:
     #IMAGE_BUILD_CONTEXT: .
     DOCKER_TLS_CERTDIR: ""  
   services:
-    - docker:dind
-    #- docker:18-dind  
+    #- docker:dind
+    - docker:18-dind  
 
 .default_build_app:
   extends: .default_build
