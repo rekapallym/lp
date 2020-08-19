@@ -21,6 +21,7 @@ stages:
   variables:
     ci_token: $ci_token 
   before_script:
+    - docker pull tomcat:latest
     - docker login -u gitlab-ci-deploy -p $ci_token  $CI_REGISTRY  
   script:
     - export DOCKER_HOST="tcp://localhost:2375"
