@@ -99,7 +99,7 @@ clean:
   script:
   - echo "Time to clean up"
   after_script:
-  - echo   %CI_PROJECT_DIR%
+  - echo $CI_PROJECT_DIR
   - set "BUILD_DIR=%CI_PROJECT_DIR%"
   - set "BUILD_DIR=%BUILD_DIR:/=\%"
   - echo "Cleaning %BUILD_DIR%"
