@@ -67,14 +67,25 @@ stages:
     - terraform plan -var="image_name=$CI_REGISTRY_IMAGE/$app_env:$CI_PIPELINE_ID" -var="replicas=$replicas" -var="servicetype=NodePort" -var="containerport=8081" -var="targetport=8081" -var="namespace=$app_env" -var="expressjs_dns=$dns" -out=plan.tfplan
     - terraform apply "plan.tfplan"
 
+#dev_build:
+#  extends: .default_build_app
+#  variables:
+#    app_env: develop
+#  only:
+    #- develop
+#    - master    
+
 dev_build:
-  extends: .default_build_app
+  #extends: .default_build_app
   variables:
     app_env: develop
   only:
     #- develop
-    - master    
-    
+    - master
+  script:
+    - docker ps  
+
+
 #prod_build:
 #  extends: .default_build_app
 #  variables:
