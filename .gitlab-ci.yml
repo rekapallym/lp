@@ -76,6 +76,8 @@ stages:
 #    - master    
 
 dev_build:
+  tags:
+    - lpdocker
   stage: build
   #extends: .default_build_app
   variables:
