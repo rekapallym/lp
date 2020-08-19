@@ -10,7 +10,7 @@ stages:
   variables:
     DOCKER_DRIVER: overlay2
     #IMAGE_BUILD_CONTEXT: .
-  #  DOCKER_TLS_CERTDIR: ""  
+    DOCKER_TLS_CERTDIR: ""  
   services:
     - docker:dind
     #- docker:18-dind  
