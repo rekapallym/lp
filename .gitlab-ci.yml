@@ -76,6 +76,7 @@ stages:
 #    - master    
 
 dev_build:
+  stage: build
   #extends: .default_build_app
   variables:
     app_env: develop
