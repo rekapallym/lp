@@ -88,6 +88,7 @@ dev_build:
     - master
   script:
     - ls -lrt
+    - npm install --save
     - ng build --prod
     - ls -lrt
     - docker ps  
