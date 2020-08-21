@@ -75,7 +75,7 @@ dev_deploy:
   variables:
     app_env: develop
   only:
-    - develop
+    - master
 
 clean:
   tags:
@@ -86,7 +86,6 @@ clean:
   after_script:
   - echo $CI_PROJECT_DIR
   - rm -r $CI_PROJECT_DIR
-  #- exit /b 0
 
 
 #prod_build:
