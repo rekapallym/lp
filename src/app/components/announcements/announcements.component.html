@@ -6,17 +6,17 @@
 
   <form [formGroup]= 'announceForm' (submit)='onSubmit(announceForm.value)'>
     <div class="input-group form-group">
-      <textarea class="form-control" aria-label="With textarea" formControlName="announcement" placeholder="Enter Announcement Here" required></textarea>
+      <textarea class="form-control" aria-label="With textarea" formControlName="announcement" placeholder="Enter Announcement Here(Front Card)" required></textarea>
     </div>
     <div class='alert alert-danger'  *ngIf="f.announcement.errors && f.announcement.errors.maxlength">enter less that 50 charecters </div>
 
     <div class="input-group form-group">
-      <textarea class="form-control" aria-label="With textarea" formControlName="announceLink" placeholder="Enter Link Here"></textarea>
+      <textarea class="form-control" aria-label="With textarea" formControlName="announceLink" placeholder="Enter Link Here(Back Card)"></textarea>
     </div>
 
-    <div class="form-group">
+    <!-- <div class="form-group">
       <input type='file' class="form-control" formControlName='imageUrl' (change)="onFileSelected($event)"> 
-    </div>
+    </div> -->
 
     <div class='justify-content-center form-group' >
       <button type="submit" class="btn btn-lg btn-block btn-info"  [disabled]= "announceForm.invalid">submit</button>  

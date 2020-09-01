@@ -7,8 +7,7 @@
 
   <form [formGroup] = 'thoughtForm' (submit)="onSubmit(thoughtForm.value)">
     <label>Enter Your Thought below:</label>
-    <div class="input-group form-group">
-     
+    <div class="input-group form-group">   
       <input class="form-control" aria-label="With textarea" formControlName="content" placeholder="Enter Thought Here" required > 
     </div>
     <div class='alert alert-danger' *ngIf="f.content.errors && f.content.errors.maxlength">enter less that 50 charecters</div>
@@ -19,7 +18,7 @@
     </div>
 
     <div class='justify-content-center form-group'>
-      <button type="submit" class="btn btn-lg btn-block btn-info" [disabled]= "thoughtForm.invalid">submit</button>  
+      <button type="submit" class="btn btn-lg btn-block btn-info" [disabled]= "disableButton()">submit</button>  
     </div>
   </form>
   

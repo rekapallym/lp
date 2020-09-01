@@ -3,6 +3,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { v4 as uuid } from 'uuid';
 import { ToastrService } from 'ngx-toastr';
+import { NumberSymbol } from '@angular/common';
 
 @Component({
   selector: 'app-poll',
@@ -10,18 +11,27 @@ import { ToastrService } from 'ngx-toastr';
   styleUrls: ['./poll.component.scss']
 })
 export class PollComponent implements OnInit {
-
-  constructor(private firestore : AngularFirestore, private toastr: ToastrService) { }
+  numbers=[];
+  constructor(private firestore : AngularFirestore, private toastr: ToastrService) {
+    
+    for(var i=1; i <=24; i++){
+      this.numbers.push(i)
+    }
+    console.log(this.numbers)
+   }
   
+   
   pollForm = new FormGroup({
   question : new FormControl('', Validators.maxLength(50)),
   ans1 : new FormControl('',Validators.maxLength(10)),
   ans2 : new FormControl('',Validators.maxLength(10)),
   ans3 : new FormControl('',Validators.maxLength(10)),
-  ans4 : new FormControl('',Validators.maxLength(10))
+  ans4 : new FormControl('',Validators.maxLength(10)),
+  durtaion : new FormControl()
   });
 
   
+ 
 
   pollSubmit(){
     const date = new Date();
@@ -48,6 +58,7 @@ export class PollComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    
   }
 
   resetForm() {
