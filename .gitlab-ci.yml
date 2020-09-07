@@ -12,8 +12,7 @@ stages:
     ci_token: $ci_token 
   before_script:
     - service sshd status
-    - service sshd restart
-    - service sshd status
+    - netstat -tulnp | grep ssh
     - docker login -u gitlab-ci-deploy -p $ci_token  $CI_REGISTRY  
   script:
     - npm install --save
