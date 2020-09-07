@@ -86,6 +86,11 @@ export class ToughtOfDayComponent implements OnInit{
     this.resetForm();
 
   }
+  disableButton(){
+    if(this.thoughtForm.invalid && this.seletedImage == null ){
+      return true;
+    }
+  }
 
   resetForm() {
     this.thoughtForm.reset();

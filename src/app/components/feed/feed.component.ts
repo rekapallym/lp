@@ -31,6 +31,8 @@ export class FeedComponent implements OnInit {
     });
 
 
+
+
     ngOnInit() {
       this.resetForm();
     }
@@ -95,26 +97,34 @@ export class FeedComponent implements OnInit {
     }
   
 }
-// }
+
 // {
-//         id: uuid(),
-//         title: 'feed',
-//         description: this.feedForm.value,
-//         author: 'test',
-//         sub_category :'test',
-//         card_level: 'test',
-//         content: 'test',
-//         description: 'test',
-//         language : 'test',
-//         url: "test",
-//         imageUrl :"test",
-//         title:'test',
-//         published:"2020-07-15 00:40:50 +0000",
-//         id:"e714cb96-6bf2-4171-9748-1afc92b2d18b",
-//         source:"CNN",
-//         type:"article",
-//         metadata: {
-//           date: this.date.toDateString(),
-//           time: this.date.getTime().toString(),
-//         },
-//       }
+//   "added_date":"2020-07-27 19:38:49", done
+//   "description":"On Monday, Verizon Media added a feature to Yahoo Mail that lets you shop from a not-so-sexy place: Your inbox.",
+//   "origin_date":"2020-07-21 19:38:49",
+//   "author":"",
+//   "image":"https://scx1.b-cdn.net/csz/news/tmb/2020/1-email.jpg",
+//   "title":"Yahoo Mail will let people shop from Walmart via their email inbox",
+//   "content":"On Monday, Verizon Media added a feature to Yahoo Mail that lets you shop from a not-so-sexy place: Your inbox.",
+//   "link":"https://techxplore.com/news/2020-07-yahoo-mail-people-walmart-email.html",
+//   "guid":"news514564719",
+//  
+// 
+// }
+
+
+
+// {
+//   "id": "string",
+//   "title": "funfact",
+//   "description": {
+//       "category": "string",(mandatory-field)
+//       "content": "string",(mandatory-field)
+//       "imageUrl": "string",
+//       "title": "string"(mandatory-field)
+//   },
+//   "metadata": {
+//       "date": "2020-12-02",
+//       "time": "string"
+//   }
+// }
