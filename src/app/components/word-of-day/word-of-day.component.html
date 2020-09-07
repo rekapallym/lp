@@ -5,25 +5,31 @@
   </section>
 
 <form [formGroup] = 'wordForm' (submit)="onSubmit(wordForm.value)">
+  <span class = 'text-color'>Front Text:</span>
   <div class="input-group form-group">
-
-    <textarea class="form-control" aria-label="With textarea" formControlName="word" placeholder="Enter The Word Here(Front card)" required></textarea>
+    <textarea class="form-control" aria-label="With textarea" formControlName="word" placeholder="Enter The Word Here(Front card)" ></textarea>
   </div>
-  <div *ngIf="f.word.errors && f.word.errors.maxlength">enter less that 50 charecters </div>
+  <div *ngIf="f.word.errors && f.word.errors.maxlength">enter less that 500 charecters </div>
 
+  <span class = 'text-color'>Back Text:</span>
   <div class="input-group form-group">
-
-    <textarea class="form-control" aria-label="With textarea" formControlName="wordExplain" placeholder="Explain The Word(Back card)" required></textarea>
+    <textarea class="form-control" aria-label="With textarea" formControlName="wordExplain" placeholder="Explain The Word(Back card)" ></textarea>
   </div>
-  <div *ngIf="f.word.errors && f.word.errors.maxlength">enter less that 50 charecters </div>
+  <div *ngIf="f.word.errors && f.word.errors.maxlength">enter less that 500 charecters </div>
 
-  <!-- <div class="form-group">
-    <input type='file' class="form-control" formControlName='imageUrl' (change)="onFileSelected($event)"> 
-  </div> -->
+  <div class="form-group">
+    <span class = 'image-color'>Front Image:</span>
+    <input type='file' class="form-control" formControlName='imageUrlFront' (change)="onFileSelected($event)"> 
+  </div>
+
+  <div class="form-group">
+    <span class = 'image-color'>Back Image:</span>
+    <input type='file' class="form-control" formControlName='imageUrlBack' (change)="onFileSelected1($event)"> 
+  </div>
 
 
   <div class='justify-content-center form-group'>
-    <button type="submit" class="btn btn-lg btn-block btn-info" [disabled]= "wordForm.invalid">submit</button>  
+    <button type="submit" class="btn btn-lg btn-block btn-info" >submit</button>  
   </div>
 </form>
 

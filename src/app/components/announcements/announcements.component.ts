@@ -6,12 +6,14 @@ import { ToastrService } from 'ngx-toastr';
 import { AngularFireStorage } from '@angular/fire/storage';
 import { finalize } from 'rxjs/operators';
 
+
 @Component({
   selector: 'app-announcements',
   templateUrl: './announcements.component.html',
   styleUrls: ['./announcements.component.scss']
 })
 export class AnnouncementsComponent implements OnInit  {
+  
 
   seletedFile = null;
 
@@ -24,7 +26,8 @@ export class AnnouncementsComponent implements OnInit  {
   announceForm = new FormGroup({
     announcement : new FormControl('', Validators.maxLength(50)),
     announceLink : new FormControl(),
-    imageUrl : new FormControl()
+    category : new FormControl(),
+    displayTime: new FormControl()
   });
   ngOnInit() {
     this.resetForm();

@@ -15,33 +15,35 @@ import { finalize } from 'rxjs/operators';
 })
 export class WordOfDayComponent  {
 
+
   constructor( private firestore: AngularFirestore, 
                private toastr: ToastrService, 
                private storage: AngularFireStorage,
                private service: ImageserviceService) { }
 
   seletedImage = null;
+  selectedImage1 = null;
   date = new Date();
+  url1 = null;
+  url2 = null;
 
   wordForm = new FormGroup({
-    word : new FormControl('', Validators.maxLength(50)),
-    wordExplain : new FormControl('', Validators.maxLength(50)),
-    imageUrl : new FormControl()
+    word : new FormControl('', Validators.maxLength(500)),
+    wordExplain : new FormControl('', Validators.maxLength(500)),
+    imageUrlFront : new FormControl(),
+    imageUrlBack : new FormControl()
   })
 
   get f(){
     return this.wordForm.controls; 
   }
   ngOnInit() {
-    this.resetForm();
+    
   }
 
 
   onFileSelected(event) {
     this.seletedImage = event.target.files[0];
-  }
-  onSubmit(formValue){
-
     if(this.seletedImage != null){
       let filePath =  `wodImages/${this.seletedImage.name}_${this.date.getTime()}`;
       const fileRef = this.storage.ref(filePath);
@@ -49,12 +51,36 @@ export class WordOfDayComponent  {
       this.storage.upload(filePath, this.seletedImage).snapshotChanges().pipe(
         finalize(() => {
           fileRef.getDownloadURL().subscribe((url) => {
-            formValue['imageUrl'] = url;
-            this.firestore.collection('content').doc("wod").collection('wod').add(wordObject);
-            this.resetForm();
+            this.url1 = url;
           });
         })
       ).subscribe();
+
+    }
+  }
+
+  onFileSelected1(event){
+    this.selectedImage1 = event.target.files[0];
+    if(this.selectedImage1 != null){
+      let filePath =  `wodImages/${this.selectedImage1.name}_${this.date.getTime()}`;
+      const fileRef = this.storage.ref(filePath);
+  
+      this.storage.upload(filePath, this.selectedImage1).snapshotChanges().pipe(
+        finalize(() => {
+          fileRef.getDownloadURL().subscribe((url) => {
+            this.url2 = url;
+          });
+        })
+      ).subscribe();
+
+    }
+
+  }
+
+  onSubmit(formValue){
+
+    if(this.seletedImage != null || this.selectedImage1 != null){
+  
       const wordObject = {
         id: uuid(),
         title: 'word_of_the_day',
@@ -64,6 +90,13 @@ export class WordOfDayComponent  {
           time: this.date.getTime().toString(),
         },
       };
+
+      if(this.url1 != null || this.url2 != null){
+        formValue['imageUrlFront'] = this.url1;
+        formValue['imageUrlBack'] = this.url2;
+        this.firestore.collection('content').doc("wod").collection('wod').add(wordObject);
+      }
+
       console.log(wordObject);
     } else{
       const wordObject = {
@@ -77,16 +110,13 @@ export class WordOfDayComponent  {
       };
 
     this.firestore.collection('content').doc("wod").collection('wod').add(wordObject);
-
       console.log(wordObject);
-
     }
-
-    
+   
     this.toastr.success('Sucessfully Submitted to FireStore!!');
     this.resetForm();
-
   }
+
 
   resetForm() {
     this.wordForm.reset();

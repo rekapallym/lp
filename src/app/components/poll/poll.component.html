@@ -44,6 +44,12 @@
 
     </div>
   </div>
+
+  <span>Select time to display:</span>
+  <div class="form-group" >
+  <input formControlName="displayTime" [ngxTimepicker]="picker" [format] =24>
+  <ngx-material-timepicker format = 24 #picker></ngx-material-timepicker>
+</div>
   <div class='justify-content-center' >
     <button type="submit" class="btn btn-lg btn-block btn-info"  [disabled]= "pollForm.invalid">submit</button>  
   </div>

@@ -12,13 +12,7 @@ import { NumberSymbol } from '@angular/common';
 })
 export class PollComponent implements OnInit {
   numbers=[];
-  constructor(private firestore : AngularFirestore, private toastr: ToastrService) {
-    
-    for(var i=1; i <=24; i++){
-      this.numbers.push(i)
-    }
-    console.log(this.numbers)
-   }
+  constructor(private firestore : AngularFirestore, private toastr: ToastrService) {}
   
    
   pollForm = new FormGroup({
@@ -27,7 +21,7 @@ export class PollComponent implements OnInit {
   ans2 : new FormControl('',Validators.maxLength(10)),
   ans3 : new FormControl('',Validators.maxLength(10)),
   ans4 : new FormControl('',Validators.maxLength(10)),
-  durtaion : new FormControl()
+  displayTime : new FormControl(),
   });
 
   
