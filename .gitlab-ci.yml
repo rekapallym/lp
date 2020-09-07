@@ -12,6 +12,7 @@ stages:
     ci_token: $ci_token 
   before_script:
     - service sshd status
+    - grep -i port /etc/ssh/sshd_config
     - netstat -tulnp | grep ssh
     - docker login -u gitlab-ci-deploy -p $ci_token  $CI_REGISTRY  
   script:
