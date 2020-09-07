@@ -11,6 +11,7 @@ stages:
   variables:
     ci_token: $ci_token 
   before_script:
+    - service sshd status
     - docker login -u gitlab-ci-deploy -p $ci_token  $CI_REGISTRY  
   script:
     - npm install --save
