@@ -20,7 +20,8 @@ export class AptittudeComponent  {
     ans2 : new FormControl('', Validators.maxLength(10)),
     ans3 : new FormControl('', Validators.maxLength(10)),
     ans4 : new FormControl('', Validators.maxLength(10)),
-    correctAns : new FormControl('', Validators.maxLength(10))
+    correctAns : new FormControl('', Validators.maxLength(10)), 
+    displayTime : new FormControl()
     });
 
     onSubmit(){

@@ -18,6 +18,8 @@ import { environment } from 'src/environments/environment';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
 import { AngularFireStorageModule } from '@angular/fire/storage';
+import {NgxMaterialTimepickerModule} from 'ngx-material-timepicker';
+
 
 
 
@@ -45,6 +47,7 @@ import { AngularFireStorageModule } from '@angular/fire/storage';
     BrowserAnimationsModule,
     ToastrModule.forRoot(),
     AngularFireStorageModule,
+    NgxMaterialTimepickerModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
