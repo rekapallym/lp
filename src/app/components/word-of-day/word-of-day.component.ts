@@ -90,10 +90,10 @@ export class WordOfDayComponent  {
           time: this.date.getTime().toString(),
         },
       };
+      formValue['imageUrlFront'] = this.url1;
+      formValue['imageUrlBack'] = this.url2;
 
-      if(this.url1 != null || this.url2 != null){
-        formValue['imageUrlFront'] = this.url1;
-        formValue['imageUrlBack'] = this.url2;
+      if(this.url1 != null && this.url2 != null){
         this.firestore.collection('content').doc("wod").collection('wod').add(wordObject);
       }
 

@@ -78,10 +78,10 @@ export class FunFactComponent implements OnInit {
           time: this.date.getTime().toString(),
         },
       };
+      formValue['imageUrlFront'] = this.url1;
+      formValue['imageUrlBack'] = this.url2;
 
-      if(this.url1 != null || this.url2 != null){
-        formValue['imageUrlFront'] = this.url1;
-        formValue['imageUrlBack'] = this.url2;
+      if(this.url1 != null && this.url2 != null){  
         this.firestore.collection('content').doc('funFact').collection('funFact').add(funObject);
       }
 
