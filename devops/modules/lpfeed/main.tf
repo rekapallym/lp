@@ -74,6 +74,7 @@ resource "kubernetes_service" "lpfeed_service" {
     }
 
     type = var.service_type
+    load_balancer_ip = "35.231.224.21"
 
   }
   depends_on = [

@@ -1,6 +1,5 @@
 stages:
     - build
-    - plan
     - deploy
     - cleanup
 
@@ -21,22 +20,6 @@ stages:
     - ng build --prod
     - docker build -t $CI_REGISTRY_IMAGE/$app_env:$CI_PIPELINE_ID .
     - docker push $CI_REGISTRY_IMAGE/$app_env:$CI_PIPELINE_ID
-    
-.default_deploy_to_eks_old:
-  tags:
-    - lpdocker
-  variables:
-    gcloud_auth: $gcloud_auth
-    replicas: $replicas
-    image_name: $image_name
-    docker_auth: $docker_auth
-  before_script:
-    - ls
-    - cd devops/$app_env
-    - echo -n $gcloud_auth | base64 -d > creds.json
-    - echo -n $docker_auth | base64 -d > docker-config.json    
-    - gcloud auth activate-service-account --key-file=creds.json
-    - gcloud container clusters get-credentials testcluster --zone us-east1 --project capital-group-infra
 
 .default_deploy_to_eks:
   stage: deploy
@@ -55,29 +38,35 @@ stages:
     - gcloud container clusters get-credentials testcluster --zone us-east1 --project capital-group-infra
   script:
     - terraform init
-    - terraform plan -var="image_name=$CI_REGISTRY_IMAGE/$app_env:$CI_PIPELINE_ID" -var="replicas=$replicas" -var="servicetype=LoadBalancer" -var="containerport=80" -var="targetport=80" -var="namespace=$app_env" -out=plan.tfplan
+    - terraform plan -var="image=$CI_REGISTRY_IMAGE/$app_env:$CI_PIPELINE_ID" -var="replica_count=$replicas" -var="service_type=LoadBalancer" -var="containerport=80" -var="targetport=80" -var="namespace=$app_env" -out=plan.tfplan
     - terraform apply "plan.tfplan"
+  
 
-#dev_build:
-#  extends: .default_build_app
-#  variables:
-#    app_env: develop
-#  only:
-    #- develop
-#    - master    
-
-dev_build:
+develop_build:
   extends: .default_build_app
   variables:
     app_env: develop
   only:
-    #- develop
-    - master
+    - develop
 
-dev_deploy:
+develop_deploy:
   extends: .default_deploy_to_eks
   variables:
     app_env: develop
+  only:
+    - develop
+
+master_build:
+  extends: .default_build_app
+  variables:
+    app_env: master
+  only:
+    - master
+
+master_deploy:
+  extends: .default_deploy_to_eks
+  variables:
+    app_env: master
   only:
     - master
 
@@ -90,49 +79,3 @@ clean:
   after_script:
   - echo $CI_PROJECT_DIR
   - rm -r $CI_PROJECT_DIR
-
-
-#prod_build:
-#  extends: .default_build_app
-#  variables:
-#    app_env: production
-#  only:
-#    - master
-
-#plan_gke:
-#  extends: .default_deploy_to_eks 
-#  stage: plan
-#  script:
-#    - terraform init
-#    - terraform plan -var="image_name=$CI_REGISTRY_IMAGE/app:$CI_PIPELINE_ID" -var="replicas=$replicas" -var="servicetype=NodePort" -var="containerport=8081" -var="targetport=8081" -var="namespace=dev" -var="expressjs_dns=docker-dev" -out=plan.tfplan
-#  artifacts:
-#    paths:
-#    - devops/dev/plan.tfplan
-    
-#provision_gke:
-#  extends: .default_deploy_to_eks
-#  stage: deploy
-#  needs:
-#    - job: test_gke
-#      artifacts: true
-#  script:
-#    - ls
-#    - terraform init
-#    - terraform apply "plan.tfplan"
-#  when: manual
-###
-#dev_deploy:
-#  extends: .default_deploy_to_eks
-#  variables:
-#    app_env: develop
-#    dns: docker-dev
-#  only:
-#    - develop
-
-#prod_deploy:
-#  extends: .default_deploy_to_eks
-#  variables:
-#    app_env: production
-#    dns: docker-prod
-#  only:
-#    - master 
