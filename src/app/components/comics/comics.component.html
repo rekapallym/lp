@@ -1,0 +1,46 @@
+<section class="jumbotron text-center">
+    <div class="container">
+      <h1>Comics</h1>
+    </div>
+  </section>
+
+  <form [formGroup] = 'comicsForm' (submit)="onSubmit(comicsForm.value)">
+
+    <span class= "text-color">Enter Field:</span>
+    <div class="input-group form-group">   
+      <input class="form-control" aria-label="With textarea" formControlName="field" placeholder="Enter Field Here" required > 
+    </div>
+
+    <span class= "text-color">Enter Genre:</span>
+    <div class="input-group form-group">   
+      <input class="form-control" aria-label="With textarea" formControlName="genre" placeholder="Enter Genre Here" required > 
+    </div>
+
+    <span class= "text-color">Enter comicName:</span>
+    <div class="input-group form-group">   
+      <input class="form-control" aria-label="With textarea" formControlName="comicName" placeholder="Enter comicName Here" required > 
+    </div>
+
+    <span class= "text-color">Enter overview:</span>
+    <div class="input-group form-group">   
+      <input class="form-control" aria-label="With textarea" formControlName="overview" placeholder="Enter overview Here" required > 
+    </div>
+
+    <div class="form-group" >
+        Select Yes if the comic has Episodes:
+        <select formControlName="category" class = "form-control" required>
+          <option value= "Yes" selected> Yes</option>
+          <option value= "No" > no</option>
+        </select>
+    </div>
+
+    <div class="form-group">
+        <span class= "image-color" >Upload Content Image:</span>
+        <input type='file' class="form-control" formControlName='imageContentUrl' (change)="onFileSelected($event)"> 
+      </div>
+
+      <div class='justify-content-center form-group'>
+        <button type="submit" class="btn btn-lg btn-block btn-info" >submit</button>  
+      </div>
+
+  </form>

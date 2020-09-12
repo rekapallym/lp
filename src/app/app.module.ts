@@ -19,6 +19,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
 import { AngularFireStorageModule } from '@angular/fire/storage';
 import {NgxMaterialTimepickerModule} from 'ngx-material-timepicker';
+import { ComicsComponent } from './components/comics/comics.component';
 
 
 
@@ -35,7 +36,8 @@ import {NgxMaterialTimepickerModule} from 'ngx-material-timepicker';
     WordOfDayComponent,
     AnnouncementsComponent,
     AptittudeComponent,
-    FeedComponent
+    FeedComponent,
+    ComicsComponent,
   ],
   imports: [
     BrowserModule,

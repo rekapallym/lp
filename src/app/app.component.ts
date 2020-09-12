@@ -48,5 +48,8 @@ export class AppComponent implements OnInit{
   announce(){
     this.route.navigate(['announce'],{});
   }
+  comics(){
+    this.route.navigate(['comics',{}]);
+  }
 
 }

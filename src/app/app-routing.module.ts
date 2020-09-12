@@ -9,6 +9,7 @@ import { AptittudeComponent } from './components/aptittude/aptittude.component';
 import { AnnouncementsComponent } from './components/announcements/announcements.component';
 import { WordOfDayComponent } from './components/word-of-day/word-of-day.component';
 import { FeedComponent } from './components/feed/feed.component';
+import { ComicsComponent } from './components/comics/comics.component';
 
 
 
@@ -37,6 +38,9 @@ const routes: Routes = [{
 },{
   path: 'feed' ,
   component: FeedComponent,
+},{
+  path: 'comics' ,
+  component: ComicsComponent,
 }
 ];
 
