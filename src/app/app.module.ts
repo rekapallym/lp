@@ -20,6 +20,7 @@ import { ToastrModule } from 'ngx-toastr';
 import { AngularFireStorageModule } from '@angular/fire/storage';
 import {NgxMaterialTimepickerModule} from 'ngx-material-timepicker';
 import { ComicsComponent } from './components/comics/comics.component';
+import { CoursesComponent } from './components/courses/courses.component';
 
 
 
@@ -38,6 +39,7 @@ import { ComicsComponent } from './components/comics/comics.component';
     AptittudeComponent,
     FeedComponent,
     ComicsComponent,
+    CoursesComponent,
   ],
   imports: [
     BrowserModule,
