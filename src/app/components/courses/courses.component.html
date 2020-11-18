@@ -3,3 +3,83 @@
       <h1>Courses</h1>
     </div>
   </section>
+
+  <form [formGroup]= 'courseForm' (submit)="courseSubmit()">
+    <!-- <input  class="form-control" formControlName="name" placeholder="give your name yo" required> -->
+
+
+    <div class="row">
+        <div class="col">
+         
+            <div class="form-group" >
+                <select formControlName="category" class = "form-control"  required>
+                    <option value="" selected hidden>Select...</option>
+                    <option value= "English" selected> English</option>
+                  <option value= "Chemistry" > Chemistry</option>
+                  <option value= "Physics" > Physics</option>
+                 <option value= "Mathematics" > Mathematics</option>
+                </select>
+            </div>
+
+          <!-- <div class='alert alert-danger' *ngIf="f.ans1.errors && f.ans1.errors.maxlength">enter less that 10 charectres </div> -->
+        </div> 
+        <div class="col">
+            <div class="input-group form-group">
+                <input  class="form-control" formControlName="topicName" placeholder="Topic-Name" required>
+              </div>
+            <!-- <div  class='alert alert-danger' *ngIf="f.ans2.errors && f.ans2.errors.maxlength">enter less that 10 charectres </div> -->  
+          </div>
+
+          <div class="col">
+            <div class="input-group form-group"> 
+              <input  class="form-control" formControlName="subTopicName" placeholder="Sub-Topic-Name" required>
+            </div>
+            <!-- <div  class='alert alert-danger' *ngIf="f.ans2.errors && f.ans2.errors.maxlength">enter less that 10 charectres </div> -->
+      
+          </div>
+      </div>
+
+
+      <div class="input-group form-group">
+   
+        <textarea class="form-control" aria-label="With textarea" formControlName="description" placeholder="Enter Description Here" required></textarea>
+      </div>
+
+
+      <div class="row">
+        <div class="col">
+         
+            <div class="form-group" >
+                <input  class="form-control" formControlName="price" placeholder="Enter Price" required>
+
+            </div>
+          <!-- <div class='alert alert-danger' *ngIf="f.ans1.errors && f.ans1.errors.maxlength">enter less that 10 charectres </div> -->
+        </div> 
+        <div class="col">
+            <div class="form-group" >
+                <input  class="form-control" formControlName="discountPercentage" placeholder="Enter Discount" required>
+
+            </div>
+            <!-- <div  class='alert alert-danger' *ngIf="f.ans2.errors && f.ans2.errors.maxlength">enter less that 10 charectres </div> -->  
+          </div>
+
+      </div>
+      
+
+      <div class="input-group form-group">
+        <input  class="form-control" formControlName="title" placeholder="Title-Name" required>
+      </div>
+
+      <div formControlName="difficulty_level">
+          Difficulty Level:
+            <select [(ngModel)]= 'levels' class='form-control' >
+                <option  *ngFor = "let level of levels" [value]="level.value">{{level.value}}</option>
+            </select>      
+      </div>
+      
+
+
+<div class='justify-content-center' >
+  <button type="submit" class="btn btn-lg btn-block btn-info"  [disabled]= "courseForm.invalid">submit</button>  
+</div>
+    </form>
