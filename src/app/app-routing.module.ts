@@ -10,6 +10,7 @@ import { AnnouncementsComponent } from './components/announcements/announcements
 import { WordOfDayComponent } from './components/word-of-day/word-of-day.component';
 import { FeedComponent } from './components/feed/feed.component';
 import { ComicsComponent } from './components/comics/comics.component';
+import { CoursesComponent } from './components/courses/courses.component';
 
 
 
@@ -41,6 +42,9 @@ const routes: Routes = [{
 },{
   path: 'comics' ,
   component: ComicsComponent,
+},{
+  path: 'courses' ,
+  component: CoursesComponent,
 }
 ];
 

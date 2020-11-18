@@ -51,5 +51,8 @@ export class AppComponent implements OnInit{
   comics(){
     this.route.navigate(['comics',{}]);
   }
+  courses(){
+    this.route.navigate(['courses',{}]);
+  }
 
 }
