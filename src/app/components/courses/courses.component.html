@@ -4,7 +4,7 @@
     </div>
   </section>
 
-  <form [formGroup]= 'courseForm' (submit)="courseSubmit()">
+  <form [formGroup]= 'courseForm' (submit)="courseSubmit(courseForm.value)">
     <!-- <input  class="form-control" formControlName="name" placeholder="give your name yo" required> -->
 
 
@@ -70,11 +70,30 @@
         <input  class="form-control" formControlName="title" placeholder="Title-Name" required>
       </div>
 
-      <div formControlName="difficulty_level">
-          Difficulty Level:
-            <select [(ngModel)]= 'levels' class='form-control' >
-                <option  *ngFor = "let level of levels" [value]="level.value">{{level.value}}</option>
-            </select>      
+
+      <div class="row">
+        <div class="col">
+         
+            <div class="form-group" >
+                <select formControlName="difficulty_level" class = "form-control"  required>
+                    <option value="" selected disabled hidden>Please select...</option>
+                    <option value= "1" selected> 1</option>
+                  <option value= "2" > 2</option>
+                  <option value= "3" > 3</option>
+                 <option value= "4" > 4</option>
+                 <option value= "5" > 5</option>
+                </select>
+            </div>
+
+          <!-- <div class='alert alert-danger' *ngIf="f.ans1.errors && f.ans1.errors.maxlength">enter less that 10 charectres </div> -->
+        </div> 
+
+      </div>
+
+      
+      <div class="form-group">
+        <span class= "image-color" >Upload Image:</span>
+        <input type='file' class="form-control" formControlName='imageUrl' (change)="onFileSelected($event)"> 
       </div>
       
 
