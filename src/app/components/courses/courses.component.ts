@@ -29,7 +29,7 @@ export class CoursesComponent implements OnInit {
     category: new FormControl(),
     topicName: new FormControl(),
     subTopicName: new FormControl(),
-    description: new FormControl(),
+    description_topic: new FormControl(),
     price: new FormControl(),
     discountPercentage: new FormControl('%'),
     title: new FormControl(),
