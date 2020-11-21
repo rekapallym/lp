@@ -91,11 +91,24 @@
 
       </div>
 
-      
-      <div class="form-group">
-        <span class= "image-color" >Upload Image:</span>
-        <input type='file' class="form-control" formControlName='imageUrl' (change)="onFileSelected($event)"> 
+      <div class="input-group form-group">
+   
+        <textarea class="form-control" aria-label="With textarea" formControlName="summary" placeholder="Enter Summary Here" required></textarea>
       </div>
+      <div class="input-group form-group">
+   
+        <textarea class="form-control" aria-label="With textarea" formControlName="explanation" placeholder="Enter Explanation Here" required></textarea>
+      </div>
+      <div class="input-group form-group">
+   
+        <textarea class="form-control" aria-label="With textarea" formControlName="chit-sheet" placeholder="Enter Chit Sheet Here" required></textarea>
+      </div>
+      <div class="input-group form-group">
+   
+        <textarea class="form-control" aria-label="With textarea" formControlName="flash_cards" placeholder="Enter FlashCards Here" required></textarea>
+      </div>
+
+
       
 
 

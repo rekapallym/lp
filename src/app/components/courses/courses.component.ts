@@ -34,7 +34,12 @@ export class CoursesComponent implements OnInit {
     discountPercentage: new FormControl('%'),
     title: new FormControl(),
     difficulty_level: new FormControl(),
-    imageUrl : new FormControl()
+    imageUrl : new FormControl(),
+    summary: new FormControl(),
+    explanation: new FormControl(),
+    chitSheet: new FormControl(),
+    flashCards: new FormControl()
+
   });
   
   date = new Date();
